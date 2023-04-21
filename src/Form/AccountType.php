@@ -15,7 +15,7 @@ class AccountType extends AbstractType
         $builder
             ->add('nom')
             ->add('solde')
-            ->add('submit', SubmitType::class)
+            ->add('Valider', SubmitType::class)
         ;
     }
 

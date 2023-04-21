@@ -15,7 +15,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class TransactionController extends AbstractController
 {
     #[Route('/transaction', name: 'app_transaction')]
-    public function index(TransactionRepository $tr, AccountRepository $ar): Response
+    public function index(TransactionRepository $tr): Response
     {
         $user = $this->getUser();
         $transactions = $tr->findAll();
@@ -51,7 +51,7 @@ class TransactionController extends AbstractController
             $compteOrigine->setSolde($compteOrigine->getSolde() - $montant);
             $compteDestination->setSolde($compteDestination->getSolde() + $montant);
 
-            $em->persist($transaction, $compteOrigine, $compteDestination);
+            $em->persist($transaction);
             $em->flush();
             return $this->redirectToRoute('app_account');
         }

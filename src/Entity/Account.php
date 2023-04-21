@@ -30,9 +30,13 @@ class Account
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
+    #[ORM\OneToMany(mappedBy: 'compte', targetEntity: Recharge::class)]
+    private Collection $recharge;
+
     public function __construct()
     {
         $this->transactions = new ArrayCollection();
+        $this->recharge = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -120,5 +124,35 @@ class Account
     public function __toString(): string
     {
         return $this->nom;
+    }
+
+    /**
+     * @return Collection<int, Recharge>
+     */
+    public function getRecharge(): Collection
+    {
+        return $this->recharge;
+    }
+
+    public function addRecharge(Recharge $recharge): self
+    {
+        if (!$this->recharge->contains($recharge)) {
+            $this->recharge->add($recharge);
+            $recharge->setCompte($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRechargeDate(Recharge $recharge): self
+    {
+        if ($this->recharge->removeElement($recharge)) {
+            // set the owning side to null (unless already changed)
+            if ($recharge->getCompte() === $this) {
+                $recharge->setCompte(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -6,79 +6,29 @@
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    .table {
-        width: 100%;
-        border-collapse: collapse;
-        font-family: Arial, sans-serif;
-    }
-
-    .table__header {
-        background-color: #f2f2f2;
-        font-weight: bold;
-        text-align: left;
-        padding: 8px;
-        border: 1px solid #ddd;
-    }
-
-    .table__row:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-
-    .table__cell {
-        padding: 8px;
-        border: 1px solid #ddd;
-    }
-    a {
-        display: inline-block;
-        text-decoration: none;
-        color: #007bff;
-        border: 1px solid #007bff;
-        border-radius: 4px;
-        padding: 10px 20px;
-        transition: background-color 0.2s ease;
-    }
-
-    a:hover {
-        background-color: #007bff;
-        color: #fff;
-    }
-
-    .btn {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        padding: 10px 20px;
-        transition: background-color 0.2s ease;
-        margin-top: 1rem;
-    }
-
-    .btn:hover {
-        background-color: #0062cc;
-    }
 </style>
 
 <div class="example-wrapper">
     {% for accountId, accountTransactions in transactions %}
         <h2>Transactions pour le compte {{ accountId }}</h2>
-        <table class="table">
+        <table>
             <thead>
             <tr>
-                <th class="table__header">Détail</th>
-                <th class="table__header">Montant</th>
-                <th class="table__header">Date</th>
-                <th class="table__header">Origine</th>
-                <th class="table__header">Destination</th>
+                <th>Détail</th>
+                <th>Montant</th>
+                <th>Date</th>
+                <th>Origine</th>
+                <th>Destination</th>
             </tr>
             </thead>
             <tbody>
             {% for transaction in accountTransactions %}
-                <tr class="table__row">
-                    <td class="table__cell">{{ transaction.getDescription() }}</td>
-                    <td class="table__cell">{{ transaction.getMontant() }}</td>
-                    <td class="table__cell">{{ transaction.getTransactionDate()|date('d/m/Y H:i:s') }}</td>
-                    <td class="table__cell">{{ transaction.getCompteOrigine() }}</td>
-                    <td class="table__cell">{{ transaction.getCompteDestination() }}</td>
+                <tr>
+                    <td>{{ transaction.getDescription() }}</td>
+                    <td>{{ transaction.getMontant() }} €</td>
+                    <td>{{ transaction.getTransactionDate()|date('d/m/Y H:i:s') }}</td>
+                    <td>{{ transaction.getCompteOrigine() }}</td>
+                    <td>{{ transaction.getCompteDestination() }}</td>
                 </tr>
             {% endfor %}
             </tbody>
