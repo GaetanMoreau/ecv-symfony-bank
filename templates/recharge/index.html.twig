@@ -17,6 +17,7 @@
                 <th>Montant</th>
                 <th>Date</th>
                 <th>Compte</th>
+                <th>Carte</th>
             </tr>
             </thead>
             <tbody>
@@ -25,6 +26,7 @@
                     <td>{{ recharge.getMontant() }} €</td>
                     <td>{{ recharge.getRechargeDate()|date('d/m/Y H:i:s') }}</td>
                     <td>{{ recharge.getCompte() }}</td>
+                    <td>{{ recharge.getCarte() }}</td>
                 </tr>
             {% endfor %}
             </tbody>

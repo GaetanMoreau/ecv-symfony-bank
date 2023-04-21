@@ -15,6 +15,7 @@ class RechargeType extends AbstractType
         $builder
             ->add('montant')
             ->add('compte')
+            ->add('carte')
             ->add('Valider', SubmitType::class)
         ;
     }

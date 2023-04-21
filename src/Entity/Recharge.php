@@ -23,6 +23,9 @@ class Recharge
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $recharge_date = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $carte = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class Recharge
     public function setRechargeDate(\DateTimeInterface $recharge_date): self
     {
         $this->recharge_date = $recharge_date;
+
+        return $this;
+    }
+
+    public function getCarte(): ?string
+    {
+        return $this->carte;
+    }
+
+    public function setCarte(int $carte): self
+    {
+        $this->carte = $carte;
 
         return $this;
     }

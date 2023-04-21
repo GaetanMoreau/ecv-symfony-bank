@@ -53,11 +53,18 @@ class TransactionController extends AbstractController
 
             $em->persist($transaction);
             $em->flush();
-            return $this->redirectToRoute('app_account');
+            return $this->redirectToRoute('app_transaction_confirm');
         }
 
         return $this->render('transaction/add.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+    #[Route('/transaction/confirm', name: 'app_transaction_confirm')]
+    public function confirm(): Response
+    {
+        return $this->render('transaction/confirm.html.twig', [
+            'controller_name' => 'TransactionController',
         ]);
     }
 }
